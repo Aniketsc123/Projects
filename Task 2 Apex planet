@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form & To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <h1>My Website</h1>
+  </nav>
+
+  <!-- Main Layout -->
+  <main class="grid-layout">
+    <!-- Contact Form Section -->
+    <section class="form-section">
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" required></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+    </section>
+
+    <!-- To-Do List Section -->
+    <section class="todo-section">
+      <h2>To-Do List</h2>
+      <input type="text" id="taskInput" placeholder="Enter a task">
+      <button onclick="addTask()">Add Task</button>
+      <ul id="taskList"></ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Flexbox Navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  background: #333;
+  color: white;
+  padding: 1rem;
+}
+
+/* CSS Grid Layout for content */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.form-section, .todo-section {
+  background: #f4f4f4;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: auto;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input, textarea, button {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* To-Do List Styles */
+.todo-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-section li {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+}
+
+.todo-section li button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.todo-section li button:hover {
+  background: darkred;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .grid-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+// Form Validation
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  let name = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let message = document.getElementById("message").value.trim();
+
+  if (name === "" || email === "" || message === "") {
+    alert("All fields are required!");
+    return;
+  }
+
+  let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  if (!email.match(emailPattern)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  alert("Form submitted successfully!");
+  document.getElementById("contactForm").reset();
+});
+
+// To-Do List Add/Remove
+function addTask() {
+  let input = document.getElementById("taskInput");
+  let taskText = input.value.trim();
+
+  if (taskText === "") {
+    alert("Please enter a task");
+    return;
+  }
+
+  let li = document.createElement("li");
+  li.textContent = taskText;
+
+  let removeBtn = document.createElement("button");
+  removeBtn.textContent = "❌";
+  removeBtn.onclick = function() {
+    li.remove();
+  };
+
+  li.appendChild(removeBtn);
+  document.getElementById("taskList").appendChild(li);
+
+  input.value = "";
+}
