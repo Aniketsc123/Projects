@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My First Webpage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Welcome to My Webpage</h1>
+
+  <p>This is a simple paragraph explaining the content of the webpage.</p>
+  <p>HTML is the standard markup language for creating Web pages.</p>
+
+  <img src="https://via.placeholder.com/300" alt="Sample Image">
+
+  <p>Visit <a href="https://www.google.com" target="_blank">Google</a> for more information.</p>
+
+  <button onclick="showAlert()">Click Me!</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f8ff;
+  margin: 40px;
+  color: #333;
+}
+
+h1 {
+  color: #2e8b57;
+  text-align: center;
+}
+
+p {
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+img {
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
+a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  background-color: #ff6347;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  margin: 20px auto;
+}
+button:hover {
+  background-color: #ff4500;
+}
+function showAlert() {
+  alert("Hello! You clicked the button.");
+}
